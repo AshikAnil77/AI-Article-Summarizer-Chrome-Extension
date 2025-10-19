@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Summary</title>
+  <style>
+    /* --- Modern Reset & Body --- */
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    body {
+      /* Use a modern, clean system font stack */
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+      min-width: 450px; /* Slightly narrower for a better popup feel */
+      min-height: 300px;
+      padding: 20px; /* More breathing room */
+      margin: 0;
+      background-color: #f9f9fb; /* Subtle background color */
+      color: #1f2937; /* Darker, more readable text */
+    }
+
+    /* --- Header --- */
+    h2 {
+      font-size: 1.25rem; /* 20px */
+      font-weight: 600;
+      color: #111827;
+      margin: 0 0 20px 0; /* Cleaned up margins */
+      text-align: center;
+    }
+
+    /* --- Controls Area --- */
+    .options {
+      display: grid;
+      /* This grid gives us perfect alignment */
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    /* --- Shared Button & Select Styles --- */
+    button,
+    #summary-type {
+      height: 42px; /* Consistent height for all controls */
+      padding: 10px 16px;
+      font-size: 0.875rem; /* 14px */
+      font-weight: 600;
+      border-radius: 8px; /* Softer, modern corners */
+      border: 1px solid #d1d5db; /* Light gray border */
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    button:focus,
+    #summary-type:focus {
+      outline: 2px solid #a5b4fc; /* Clear focus ring for accessibility */
+      border-color: transparent;
+    }
+
+    /* --- Dropdown Select --- */
+    #summary-type {
+      background-color: #ffffff;
+      color: #1f2937;
+      -webkit-appearance: none; /* Removes default OS styling */
+      appearance: none;
+      /* Simple background arrow */
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="%236b7280" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m6 8 4 4 4-4"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 1em;
+      padding-right: 40px; /* Make room for the arrow */
+    }
+
+    #summary-type:hover {
+      border-color: #9ca3af;
+    }
+
+    /* --- Primary Button --- */
+    #summarize {
+      background: linear-gradient(90deg, #4f46e5, #6366f1);
+      color: #fff;
+      border: none;
+      box-shadow: 0 2px 6px rgba(99, 102, 241, 0.4);
+    }
+
+    #summarize:hover {
+      background: linear-gradient(90deg, #4338ca, #4f46e5);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.5);
+    }
+
+    /* --- Copy Button --- */
+    #copy-btn {
+      background-color: #eef2ff;
+      color: #4338ca;
+      border: 1px solid #c7d2fe;
+    }
+
+    #copy-btn:hover {
+      background-color: #e0e7ff;
+      border-color: #a5b4fc;
+      transform: translateY(-1px);
+    }
+
+    /* --- Result Area --- */
+    #result {
+      margin-top: 15px;
+      padding: 16px;
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb; /* Softer border */
+      border-radius: 8px;
+      min-height: 200px;
+      max-height: 350px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.6; /* Better text readability */
+      color: #374151; /* Softer text color */
+    }
+
+    /* --- Loading Spinner --- */
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+    }
+
+    .loader {
+      border: 4px solid #eef2ff; /* Light loader track */
+      border-top: 4px solid #4f46e5; /* Main loader color */
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>AI Summary</h2>
+
+  <div class="options">
+    <select id="summary-type">
+      <option value="brief">Brief Summary</option>
+      <option value="detailed">Detailed Summary</option>
+      <option value="bullets">Bullet Points</option>
+    </select>
+    <button id="summarize">Summarize</button>
+    <button id="copy-btn">Copy</button>
+  </div>
+
+  <div id="result">
+    Select a summary type and click 'Summarize'. 
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

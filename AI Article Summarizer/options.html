@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extension Options</title>
+    <style>
+        /* --- General Body Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* --- Main Settings Container --- */
+        .container {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* --- Heading --- */
+        h1 {
+            font-size: 1.75rem;
+            color: #1a202c;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Form Grouping --- */
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        /* --- Labels for Inputs --- */
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+
+        /* --- Text Input Field --- */
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        }
+        
+        /* --- Helper Text and Links --- */
+        p {
+            color: #718096;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+        }
+
+        a {
+            color: #4299e1;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: #2b6cb0;
+            text-decoration: underline;
+        }
+
+        /* --- Save Button --- */
+        #save-button {
+            background-color: #4299e1;
+            color: white;
+            border: none;
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+        }
+
+        #save-button:hover {
+            background-color: #3182ce;
+        }
+
+        #save-button:active {
+            transform: scale(0.98);
+        }
+
+        /* --- Success Message (Initially Hidden) --- */
+        .success-message {
+            display: none; /* Hidden by default, shown via JS */
+            margin-top: 1rem;
+            color: #38a169;
+            font-weight: 500;
+            background-color: #f0fff4;
+            border: 1px solid #9ae6b4;
+            padding: 0.75rem;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- A container div for better styling and centering -->
+    <div class="container">
+        <h1>AI Summary Settings</h1>
+        <div class="form-group">
+            <label for="api-key">Gemini API Key</label>
+            <input type="text" id="api-key" placeholder="Enter your Gemini API key"/>
+            <p>
+                You can get an API key from: 
+                <a href="https://makersuite.google.com/app/apikey" target="_blank">
+                    Google AI Studio
+                </a>
+            </p>
+        </div>
+
+        <button id="save-button">Save Settings</button>
+        
+        <p id="success-message" class="success-message">
+            Settings saved successfully!
+        </p>
+    </div>
+
+    <!-- The script is assumed to handle showing the success message -->
+    <script src="options.js"></script>
+</body>
+</html>
